@@ -1,28 +1,33 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import Axios from 'axios';
 import {Link, useNavigate} from "react-router-dom";
 import { Button } from 'react-bootstrap';
 import "../styles/Login.css"
-import {FaRegAddressBook} from "react-icons/fa"
+import {FaRegAddressBook} from "react-icons/fa";
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginStatus, setLoginStatus] = useState("");
-
-    // let localStorageUsername=localStorage.getItem("localStorageUsername");
-    // let localStorageLoggedState=localStorage.getItem("localStorageLoggedState");
+    //const [setLoggedIn] = useState(false);
+    const [userNameNId,setUserNameNId] = useState([]);
 
     const navigate = useNavigate();
   
     useEffect(() => {
-
+        //console.log(loggedIn);
     });
 
-
-    const loginUser = () => {        
-
+    const loginUser = () => {       
+        
         setLoginStatus("please wait...");
+        if(username == null || username === undefined){
+            setLoginStatus("Name is empty");
+        }
+        else if(password == null || password === undefined){
+            setLoginStatus("password is empty");
+        }
+
         if(username==="sheikh" && password==="rub"){
             // setLoginStatus("logging in");
             // localStorage.setItem("localStorageUsername",username);
@@ -41,9 +46,10 @@ const Login = () => {
                 if(response.data){
                     setLoginStatus("logging in");
                     localStorage.setItem("localStorageUsername",username);
-                    //localStorage.setItem("localStorageLoggedState",1);
+                    localStorage.setItem("localStorageUserId",response.data.data.id);
                     localStorage.setItem('token', response.data.data.token);
-                    navigate("/");
+                    //setLoggedIn(true);
+                    navigate("/profile");
                 }
                 else{
                     setLoginStatus("Wrong id or password");

@@ -2,11 +2,11 @@ import React,{useState, useEffect, useContext} from 'react'
 import {Link} from "react-router-dom";
 import '../styles/Projects.css'
 import {BsPerson} from "react-icons/bs"
-import {FaRegAddressBook} from "react-icons/fa";
+import {FiEdit} from "react-icons/fi";
 //import Projectara from '../json/Projectara';
 import PortfolioContext from '../contexts/PortfolioContext';
 
-const Projects = () => {
+const ProjectsProfile = () => {
     const {portfolio} = useContext(PortfolioContext);
 
     const [workData, setWorkData] = useState([]);
@@ -29,6 +29,13 @@ const Projects = () => {
 
   return (
     <div className="projects text-white lg:text-xs 2xl:text-sm pb-10" id="portfolio">
+        {localStorage.getItem('token') != null ? (
+            <Link to ="/profile/projectsadd">
+                <FiEdit className="absolute right-6 lg:text-base 2xl:text-xl mt-4 hover:text-red-200"/>
+            </Link>
+            ) : (
+            <div></div>
+        )}
         <p className="flex justify-center pt-10 pb-2">Portfolio</p>
         <div className="flex justify-center text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-10"><p className="text-orange-600 mr-3">Latest</p><p>Projects</p></div>
         
@@ -68,4 +75,4 @@ const Projects = () => {
   )
 }
 
-export default Projects
+export default ProjectsProfile

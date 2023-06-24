@@ -6,17 +6,17 @@ import Projects from './Projects'
 import Contacts from './Contacts'
 import Footer from './Footer'
 
-const Homepage = () => {
-  return (
-    <>
-      <Heromain/>
-      <About/>
-      <Service/>
-      <Projects/>
-      <Contacts/>
-      <Footer/>
-    </>
-  )
+const Portfolio = () => {
+    return (
+        <>
+          <Heromain/>
+          <About/>
+          <Service/>
+          <Projects/>
+          <Contacts/>
+          <Footer/>
+        </>
+    )
 }
 
-export default Homepage
+export default Portfolio

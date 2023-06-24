@@ -11,7 +11,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-public class PortfolioRequest implements Serializable {
+public class SignupRequest implements Serializable {
     public String name;
+    public String email;
+    public String password;
 
 }

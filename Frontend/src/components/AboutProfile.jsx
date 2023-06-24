@@ -1,8 +1,10 @@
-import React,{useState, useEffect, useContext} from 'react'
-import '../styles/About.css'
+import React,{useState, useEffect, useContext} from 'react';
+import {Link} from "react-router-dom";
+import {FiEdit} from "react-icons/fi";
+import '../styles/About.css';
 import PortfolioContext from '../contexts/PortfolioContext';
 
-const About = () => {
+const AboutProfile = () => {
     const {portfolio} = useContext(PortfolioContext);
     const [aboutData, setAboutData] = useState([]);
 
@@ -15,6 +17,13 @@ const About = () => {
 
   return (
     <>
+        {localStorage.getItem('token') != null ? (
+            <Link to="/profile/aboutsadd">
+                <FiEdit className="absolute right-6 lg:text-base 2xl:text-xl mt-4 text-white hover:text-red-200"/>
+            </Link>
+            ) : (
+            <div></div>
+        )}
         {aboutData.map((curElem)=>{
             return(
             <div className="pt-1 lg:pt-0 lg:flex pb-20 about" id="about" key={curElem.id}>
@@ -38,4 +47,4 @@ const About = () => {
   )
 }
 
-export default About
+export default AboutProfile

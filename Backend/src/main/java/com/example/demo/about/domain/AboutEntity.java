@@ -1,6 +1,7 @@
 package com.example.demo.about.domain;
 
 import com.example.demo.common.domain.BaseEntity;
+import com.example.demo.user.domain.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,9 @@ public class AboutEntity extends BaseEntity {
     @Column(nullable = false)
     private Long userId;
 
+//    @Column(nullable = true)
+//    private Long userName;
+
     @Column(nullable = false)
     private String occupation;
 
@@ -34,6 +38,10 @@ public class AboutEntity extends BaseEntity {
     @Column(nullable = false)
     private String aboutImageLink;
 
+
+//    @JoinColumn(name = "userName", referencedColumnName = "name")
+//    private UserEntity user;
+
     public AboutEntity(Long userId, String occupation, String description, String backgroundImageLink, String aboutImageLink) {
         this.userId = userId;
         this.occupation = occupation;
@@ -41,4 +49,6 @@ public class AboutEntity extends BaseEntity {
         this.backgroundImageLink = backgroundImageLink;
         this.aboutImageLink = aboutImageLink;
     }
+
+
 }

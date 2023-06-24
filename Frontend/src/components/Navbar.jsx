@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {Link} from "react-router-dom";
-import Logo from "../images/logo.png";
+import Logo from "../images/FLogo.png";
 import {RxHamburgerMenu} from "react-icons/rx"
 import '../App.css';
 import '../styles/Navbar.css'

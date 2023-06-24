@@ -12,6 +12,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -45,7 +46,14 @@ public class UserEntity extends BaseEntity {
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ContactsEntity> contacts= new ArrayList<>();
 
+    public UserEntity(String name,String email, String password){
+        this.name=name;
+        this.email=email;
+        this.password=password;
+    }
+
 //    @OneToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "user_id", referencedColumnName = "id", unique = true)
 //    private AboutEntity aboutEntity;
+
 }

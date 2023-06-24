@@ -13,4 +13,5 @@ import java.io.Serializable;
 public class LoginResponse implements Serializable {
     private String respMessage;
     private String token;
+    private Long id;
 }

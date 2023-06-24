@@ -26,8 +26,13 @@ public class UserServiceImpl implements UserService{
     @Override
     public PortfolioResponse getUser(PortfolioRequest portfolioRequest){
         try{
-            UserEntity user = userRepository.findById(portfolioRequest.getId()).get();
-            return new PortfolioResponse(USER_FOUND.getMessage(),user);
+            UserEntity user = userRepository.findByName(portfolioRequest.getName());
+            if (user != null) {
+                return new PortfolioResponse(USER_FOUND.getMessage(), user);
+            }
+            else{
+                return new PortfolioResponse(USER_DONT_EXIST.getMessage(), null);
+            }
         }catch (Exception e){
             //throw new UserDontExistException();
             return new PortfolioResponse(USER_DONT_EXIST.getMessage(), null);
@@ -39,15 +44,35 @@ public class UserServiceImpl implements UserService{
         try{
             UserEntity user = userRepository.findByName(loginRequest.getName());
             if ((user != null) && user.getPassword().equals(loginRequest.getPassword())) {
-                return new LoginResponse(LOGIN_SUCCESSFUL.getMessage(), generateJwtToken(loginRequest.getName(),loginRequest.getPassword()));
+                return new LoginResponse(LOGIN_SUCCESSFUL.getMessage(), generateJwtToken(loginRequest.getName(),loginRequest.getPassword()),user.getId());
             }
             else{
-                return new LoginResponse(USER_DONT_EXIST.getMessage(), null);
+                return new LoginResponse(USER_DONT_EXIST.getMessage(), null,null);
             }
         }
         catch (Exception e){
             //throw new UserDontExistException();
-            return new LoginResponse(USER_DONT_EXIST.getMessage(), null);
+            return new LoginResponse(USER_DONT_EXIST.getMessage(), null,null);
+        }
+
+    }
+
+    @Override
+    public SignupResponse signup(SignupRequest signupRequest){
+        try{
+            UserEntity user = userRepository.findByName(signupRequest.getName());
+            if (user == null) {
+                UserEntity userEntity= new UserEntity(signupRequest.getName(),signupRequest.getEmail(),signupRequest.getPassword());
+                userRepository.save(userEntity);
+                return new SignupResponse(SIGNUP_SUCCESSFUL.getMessage(), generateJwtToken(signupRequest.getName(),signupRequest.getPassword()), user.getId());
+            }
+            else{
+                return new SignupResponse(NAME_ALREADY_TAKEN.getMessage(), null, null);
+            }
+        }
+        catch (Exception e){
+            //throw new UserDontExistException();
+            return new SignupResponse(NAME_ALREADY_TAKEN.getMessage(), null, null);
         }
 
     }
