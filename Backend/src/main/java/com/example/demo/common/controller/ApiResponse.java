@@ -11,19 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @Getter
 @Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
     //private int statusCode;
     private String message;
     private T data;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL) // Add this annotation
-    public T getData() {
-        return data;
-    }
-
-    public boolean hasData() {
-        return data != null;
-    }
+//    @JsonInclude(JsonInclude.Include.NON_NULL) // Add this annotation
+//    public T getData() {
+//        return data;
+//    }
+//
+//    public boolean hasData() {
+//        return data != null;
+//    }
 
 
     // Constructors, getters, and setters

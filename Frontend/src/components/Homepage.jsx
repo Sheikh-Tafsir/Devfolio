@@ -5,16 +5,18 @@ import Service from './Service'
 import Projects from './Projects'
 import Contacts from './Contacts'
 import Footer from './Footer'
+import HeromainHome from './HeromainHome'
 
 const Homepage = () => {
   return (
     <>
-      <Heromain/>
+      {/* <Heromain/>
       <About/>
       <Service/>
       <Projects/>
-      <Contacts/>
-      <Footer/>
+      <Contacts/> */}
+      <HeromainHome/>
+      {/* <Footer/> */}
     </>
   )
 }

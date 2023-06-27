@@ -16,17 +16,19 @@ const AboutProfile = () => {
     }, [portfolio.about]);
 
   return (
-    <>
+    <div className="about">
+        
         {localStorage.getItem('token') != null ? (
-            <Link to="/profile/aboutsadd">
+            <Link to="/profile/aboutupdate">
                 <FiEdit className="absolute right-6 lg:text-base 2xl:text-xl mt-4 text-white hover:text-red-200"/>
             </Link>
             ) : (
             <div></div>
         )}
+        <p className="flex justify-center text-white lg:text-xs 2xl:text-sm pt-2 pb-2">Know about me</p>
         {aboutData.map((curElem)=>{
             return(
-            <div className="pt-1 lg:pt-0 lg:flex pb-20 about" id="about" key={curElem.id}>
+            <div className="pt-1 lg:pt-0 lg:flex pb-20" id="about" key={curElem.id}>
                 <div className='lg:w-1/2' data-aos="fade-up" data-aos-delay="100">
                     <div className=" w-4/5 lg:w-2/3 ml-14 lg:ml-30 mt-10 lg:mt-28 2xl:mt-20" >
                         <img src={curElem.aboutImageLink} alt="about-imagee"></img>
@@ -43,7 +45,7 @@ const AboutProfile = () => {
             </div>
             )
         })}
-    </>
+    </div>
   )
 }
 

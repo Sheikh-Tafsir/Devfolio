@@ -5,8 +5,8 @@ import Axios from 'axios';
 import '../styles/FeaturesAdd.css'
 
 const ServiceAdd = () => {
-  const [name, setName] = useState();
-  const [description, setDescription] = useState();
+    const [name, setName] = useState();
+    const [description, setDescription] = useState();
     const [serviceAddStatus, setServiceAddStatus] = useState("");
     let localStorageUserId = localStorage.getItem("localStorageUserId");
 
@@ -29,7 +29,10 @@ const ServiceAdd = () => {
         ).then((response) =>{
             if(response.data){
                 setServiceAddStatus("Service data saved");
-                navigate("/");
+                
+                setTimeout(() => {
+                  navigate("/profile");
+              }, 800);
                 
             }
             else{
@@ -42,12 +45,11 @@ const ServiceAdd = () => {
                 console.log('Error:', error.message);
             }
         });
-        document.querySelector(".featureAddForm").reset();
       }
     }
   return (
     <div className="flex flex-col justify-center items-center featuresAdd">
-        <form className="w-6/7 lg:w-2/5 text-black flex flex-col featuresAddForm">
+        <form className="w-6/7 lg:w-2/6 text-black flex flex-col featuresAddForm">
             <h1 className="lg:text-2xl 2xl:text-4xl mx-auto pt-8 pb-6">Add Serivce</h1>
             <input type="text" className="lg:text-xs 2xl:text-base" placeholder="Insert Project Name" onChange={(event) => {setName(event.target.value);} }/>
             <textarea type="text" className="lg:text-xs 2xl:text-base lg:h-20 2xl:h-40 pt-2" placeholder="Insert Project Description" onChange={(event) => {setDescription(event.target.value);} }/>

@@ -1,7 +1,7 @@
 import React, {useEffect, useContext} from 'react';
 
 import Axios from 'axios';
-import Heromain from './Heromain'
+import HeromainProfile from './HeromainProfile'
 import AboutProfile from './AboutProfile'
 import ServiceProfile from './ServiceProfile'
 import ProjectsProfile from './ProjectsProfile'
@@ -40,7 +40,7 @@ const Profile = () => {
 
   return (
     <>
-      <Heromain/>
+      <HeromainProfile/>
       <AboutProfile/>
       <ServiceProfile/>
       <ProjectsProfile/>

@@ -53,7 +53,7 @@ const Signup = () => {
         }
 
         else{
-            Axios.post('http://localhost:8080/suer/signup',
+            Axios.post('http://localhost:8080/user/signup',
             {
                 name:username,
                 email:useremail,
@@ -62,10 +62,14 @@ const Signup = () => {
             ).then((response) =>{
                 if(response.data){
                     setRegStatus("user data saved");
+                    
                     localStorage.setItem("localStorageUsername",username);
-                    // localStorage.setItem("localStorageLoggedState",1);
-                    localStorage.setItem('token', response.data.data.token);
-                    navigate("/");
+                    localStorage.setItem("localStorageUserId",response.data.data.id);
+                    localStorage.setItem('token', response.data.data.token)
+                    
+                    setTimeout(() => {
+                        navigate("/profile");
+                    }, 800);
                     
                 }
                 else{
@@ -112,15 +116,15 @@ const Signup = () => {
                 <h2>Signup Form</h2>
                 <div className="signupCreds">
                     <FaRegAddressBook className ="signupCredsIcons"/>
-                    <input type="text" id="name" name="name" placeholder="Insert name" onChange={(event) => {setUsername(event.target.value);} }/><br/>
+                    <input type="text" id="name" name="name" placeholder="Insert name" value={username} onChange={(event) => {setUsername(event.target.value);} }/><br/>
                 </div>
                 <div className="signupCreds">
                     <FaRegAddressBook className ="signupCredsIcons"/>
-                    <input type="text" id="email" name="email" placeholder="Insert email" onChange={(event) => {setUseremail(event.target.value);} }/><br/>
+                    <input type="text" id="email" name="email" placeholder="Insert email" value={useremail} onChange={(event) => {setUseremail(event.target.value);} }/><br/>
                 </div>
                 <div className="signupCreds">
                     <FaRegAddressBook className ="signupCredsIcons"/>
-                    <input type="password" id="iid" name="iid" placeholder="Insert Your password" onChange={(event) => {setPassword(event.target.value);} }/><br/>
+                    <input type="password" id="iid" name="iid" placeholder="Insert Your password" value={password} onChange={(event) => {setPassword(event.target.value);} }/><br/>
                 </div>
                 <p>{regStatus}</p><br/>
                 <Button className="signupformbut" onClick={signupUser}>Signup</Button><br/>

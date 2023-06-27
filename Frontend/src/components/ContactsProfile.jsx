@@ -19,7 +19,7 @@ const ContactsProfile = () => {
   return (
     <div className="text-white contacts" id="contacts">
         {localStorage.getItem('token') != null ? (
-            <Link to="/profile/contactsadd">
+            <Link to="/profile/contactsupdate">
                 <FiEdit className="absolute right-6 lg:text-base 2xl:text-xl mt-4 hover:text-red-200"/>
             </Link>        
             ) : (

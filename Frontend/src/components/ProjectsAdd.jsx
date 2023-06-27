@@ -56,7 +56,10 @@ const ProjectsAdd = () => {
             console.log(response.data);
             if(response.data){
               setProjectAddStatus("Project data saved");
-              navigate("/profile");
+              
+              setTimeout(() => {
+                navigate("/profile");
+            }, 800);
                 
             }
             else{

@@ -16,10 +16,6 @@ public class ResponseUtil {
             apiResponse = new ApiResponse<>(null, null);
         }
 
-        if (!apiResponse.hasData()) {
-            apiResponse = new ApiResponse<>(message, null);
-        }
-
         return ResponseEntity.status(status).body(apiResponse);
     }
 }

@@ -69,8 +69,7 @@ const ProjectsProfile = () => {
                 )
             })}
         </div>
-
-        
+ 
     </div>
   )
 }

@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 public enum Message {
     CONTACTS_SAVED_SUCCESSFULLY("Contacts saved successfully"),
+    CONTACTS_UPDATED_SUCCESSFULLY("Contacts updated successfully"),
     CONTACTS_SAVED_FAILED("Contacts saved failed");
     private final String message;
 }

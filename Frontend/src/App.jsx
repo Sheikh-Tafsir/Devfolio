@@ -1,5 +1,5 @@
 import React,{useEffect, useContext} from 'react'
-import {Routes, Route, BrowserRouter, useParams} from "react-router-dom";
+import {Routes, Route, BrowserRouter, useParams, Navigate} from "react-router-dom";
 import './App.css';
 import Homepage from './components/Homepage';
 import AOS from 'aos';
@@ -14,27 +14,39 @@ import { NameProvider } from './contexts/NameContext';
 import  PortfolioContext, {PortfolioProvider } from './contexts/PortfolioContext';
 import { UserProvider } from './contexts/UserContext';
 import ServiceAdd from './components/ServiceAdd';
+import ContactsUpdate from './components/ContactsUpdate';
+import AboutUpdate from './components/AboutUpdate';
 
 
 const App = () =>{
 
+  // localStorage.setItem("localStorageUsername");
+  // localStorage.setItem("localStorageUserId");
+  let token = localStorage.getItem('token');
+
+  const checkToken = () => (token === 'null' || token === 'undefined');
+
   useEffect(() => {
     AOS.init();
+    //console.log(token);
   }, []);
 
   return (
+    
     <>
       <BrowserRouter>
        <NameProvider>
           <PortfolioProvider>
             <UserProvider>
               <Routes>
-                <Route path="/" element={<Homepage />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/profile/projectsadd" element={<ProjectsAdd />} />
-                \<Route path="/profile/serviceadd" element={<ServiceAdd />} />
+              <Route path="/" element={checkToken() ? <Homepage /> : <Navigate to="/profile" />} />
+                <Route path="login" element={checkToken() ? <Login /> : <Navigate to="/" />} />
+                <Route path="/signup" element={checkToken() ? <Signup /> : <Navigate to="/profile" />} />
+                <Route path="/profile" element={checkToken() ? <Navigate to="/" /> : <Profile />} />
+                <Route path="/profile/aboutupdate" element={checkToken() ? <Navigate to="/" /> : <AboutUpdate />} />
+                <Route path="/profile/projectsadd" element={checkToken() ? <Navigate to="/" /> : <ProjectsAdd />} />
+                <Route path="/profile/serviceadd" element={checkToken() ? <Navigate to="/" /> : <ServiceAdd />} />
+                <Route path="/profile/contactsupdate" element={checkToken() ? <Navigate to="/" /> : <ContactsUpdate />} />
                 <Route path="/portfolio/:name" element={<DynamicPage />} />
               </Routes>
             </UserProvider>

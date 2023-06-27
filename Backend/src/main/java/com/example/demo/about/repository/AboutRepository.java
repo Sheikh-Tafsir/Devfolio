@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface AboutRepository extends JpaRepository<AboutEntity,Long> {
 
+    AboutEntity findByUserId(Long userId);
 }

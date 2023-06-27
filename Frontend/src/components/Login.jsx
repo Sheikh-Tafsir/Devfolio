@@ -9,9 +9,7 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginStatus, setLoginStatus] = useState("");
-    //const [setLoggedIn] = useState(false);
-    const [userNameNId,setUserNameNId] = useState([]);
-
+    
     const navigate = useNavigate();
   
     useEffect(() => {
@@ -49,7 +47,10 @@ const Login = () => {
                     localStorage.setItem("localStorageUserId",response.data.data.id);
                     localStorage.setItem('token', response.data.data.token);
                     //setLoggedIn(true);
-                    navigate("/profile");
+                    setTimeout(() => {
+                        //navigate("/profile");
+                        window.open("/profile", "_top");
+                    }, 800);
                 }
                 else{
                     setLoginStatus("Wrong id or password");
@@ -76,12 +77,12 @@ const Login = () => {
             <h2>Login User</h2>
             <div className="loginCreds">
                 <FaRegAddressBook className ="loginCredsIcons"/>
-                <input type="text" id="name" name="name" placeholder="Insert Usernanme" onChange={(event) => {setUsername(event.target.value);}}/><br/>
+                <input type="text" id="name" name="name" placeholder="Insert Usernanme" value={username} onChange={(event) => {setUsername(event.target.value);}}/><br/>
             </div>
             
             <div className="loginCreds">
                 <FaRegAddressBook className ="loginCredsIcons"/>
-                <input type="password" id="pass" name="pass" placeholder="Insert Password" onChange={(event) => {setPassword(event.target.value);}}/><br/>
+                <input type="password" id="pass" name="pass" placeholder="Insert Password" value={password} onChange={(event) => {setPassword(event.target.value);}}/><br/>
             </div>
             <p>{loginStatus}</p><br/>
             <Button className="logfrmbut" onClick={loginUser}>Login</Button><br/>
